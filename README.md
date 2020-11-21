@@ -3,7 +3,7 @@
 ## Introduction
 The main reason for developing this plugin is to provide an easy way to generate the Extent report for test automation.  
 
-## Technologies/Frameworks used
+## Technologies/Frameworks Used
 - Java
 - Extent Report
 - Selenium
