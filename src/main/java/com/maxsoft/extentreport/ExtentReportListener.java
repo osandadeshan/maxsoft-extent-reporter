@@ -47,20 +47,23 @@ public class ExtentReportListener implements ITestListener {
                 "Execution Results - " + timestamp + ".html");
         extent = new ExtentReports();
         extent.attachReporter(htmlReporter);
+        try {
+            if (getProperty("extent_reporter_theme").toLowerCase().equals("dark"))
+                htmlReporter.config().setTheme(Theme.DARK);
+            else
+                htmlReporter.config().setTheme(Theme.STANDARD);
 
-        if (getProperty("extent_reporter_theme").toLowerCase().equals("dark"))
+            htmlReporter.config().setDocumentTitle(getProperty("extent_document_title"));
+            htmlReporter.config().setReportName(getProperty("extent_reporter_name"));
+
+            extent.setSystemInfo("Application Name", getProperty("application_name"));
+            extent.setSystemInfo("Environment", getProperty("environment"));
+            extent.setSystemInfo("Browser", getProperty("browser"));
+            extent.setSystemInfo("Operating System", getProperty("operating_system"));
+            extent.setSystemInfo("Test Developer", getProperty("test_developer"));
+        } catch (Exception ex) {
             htmlReporter.config().setTheme(Theme.DARK);
-        else
-            htmlReporter.config().setTheme(Theme.STANDARD);
-
-        htmlReporter.config().setDocumentTitle(getProperty("extent_document_title"));
-        htmlReporter.config().setReportName(getProperty("extent_reporter_name"));
-
-        extent.setSystemInfo("Application Name", getProperty("application_name"));
-        extent.setSystemInfo("Environment", getProperty("environment"));
-        extent.setSystemInfo("Browser", getProperty("browser"));
-        extent.setSystemInfo("Operating System", getProperty("operating_system"));
-        extent.setSystemInfo("Test Developer", getProperty("test_developer"));
+        }
     }
 
     @Override
@@ -78,6 +81,7 @@ public class ExtentReportListener implements ITestListener {
         test.log(Status.FAIL, MarkupHelper.createLabel(iTestResult.getName(), ExtentColor.RED));
         test.log(Status.FAIL, MarkupHelper.createLabel(iTestResult.getThrowable().getMessage(), ExtentColor.RED));
         test.log(Status.FAIL, MarkupHelper.createLabel(Arrays.toString(iTestResult.getThrowable().getStackTrace()), ExtentColor.RED));
+
         if (Boolean.parseBoolean(getProperty("capture_screenshot_on_failure"))) {
             try {
                 test.fail("Screenshot at the failed moment is below.");

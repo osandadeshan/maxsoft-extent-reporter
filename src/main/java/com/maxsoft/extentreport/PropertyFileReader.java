@@ -1,5 +1,6 @@
 package com.maxsoft.extentreport;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,10 +17,13 @@ import java.util.Properties;
 
 public class PropertyFileReader {
 
+    private static final String fileSeparator = File.separator;
+
     public static String getProperty(String propertyName) {
         String propertyValue = null;
 
-        try (InputStream input = new FileInputStream("./src/test/resources/config.properties")) {
+        try (InputStream input = new FileInputStream(System.getProperty("user.dir")  + fileSeparator + "src" +
+                fileSeparator + "test" + fileSeparator + "resources" + fileSeparator + "extent.properties")) {
             Properties prop = new Properties();
             prop.load(input);
             propertyValue = prop.getProperty(propertyName);
