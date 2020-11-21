@@ -28,7 +28,7 @@ The main reason for developing this plugin is to provide an easy way to generate
 2. Maven
 
 ## How to use
-1. Add MaxSoft Extent Reporter dependency into pom.xml
+1. Add **MaxSoft Extent Reporter** dependency into pom.xml
 ```xml
     <repositories>
         <repository>
