@@ -2,7 +2,6 @@ package test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
@@ -25,7 +24,6 @@ import static org.testng.Assert.assertEquals;
 
 public class LoginTest {
 
-    private WebDriver driver;
     private WebElement emailTextBox;
     private WebElement passwordTextBox;
     private WebElement signInButton;
@@ -33,13 +31,12 @@ public class LoginTest {
     @BeforeMethod
     public void before() {
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        setDriver(driver);
-        driver.manage().window().maximize();
-        driver.get(getProperty("application_url"));
-        emailTextBox = driver.findElement(By.id("email"));
-        passwordTextBox = driver.findElement(By.id("passwd"));
-        signInButton = driver.findElement(By.id("SubmitLogin"));
+        setDriver(new ChromeDriver());
+        getDriver().manage().window().maximize();
+        getDriver().get(getProperty("application_url"));
+        emailTextBox = getDriver().findElement(By.id("email"));
+        passwordTextBox = getDriver().findElement(By.id("passwd"));
+        signInButton = getDriver().findElement(By.id("SubmitLogin"));
     }
 
     @Test(description = "Verify that a valid user can login to the application")
@@ -47,7 +44,15 @@ public class LoginTest {
         emailTextBox.sendKeys("osanda@mailinator.com");
         passwordTextBox.sendKeys("1qaz2wsx@");
         signInButton.click();
-        assertEquals(driver.findElement(By.xpath("//div[@class='header_user_info']//span")).getText(), "Osanda Nimalarathn");
+        assertEquals(getDriver().findElement(By.xpath("//div[@class='header_user_info']//span")).getText(), "Osanda Nimalarathna");
+    }
+
+    @Test(description = "Verify that an invalid user cannot login to the application")
+    public void testInvalidLogin() {
+        emailTextBox.sendKeys("osanda@mailinator.com");
+        passwordTextBox.sendKeys("1qaz2wsx");
+        signInButton.click();
+        assertEquals(getDriver().getTitle(), "Login - My Store");
     }
 
     @AfterMethod
