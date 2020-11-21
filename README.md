@@ -46,8 +46,7 @@ The main reason for developing this plugin is to provide an easy way to generate
     </dependencies>
 ```
 
-2. Create "**config.properties**" in ***src/test/resources/config.properties***
-
+2. Create "**config.properties**" in "***src/test/resources/config.properties***"
 
     # Test Configs
     application_url=http://automationpractice.com/index.php?controller=authentication&back=my-account
@@ -61,8 +60,7 @@ The main reason for developing this plugin is to provide an easy way to generate
     application_name=AutomationPractice.com
     environment=Production
     operating_system=Windows 10 - 64 Bit
-    test_developer=Osanda Nimalarathna
-	
+    test_developer=Osanda Nimalarathna	
 
 3. In the test automation code, find the place you are launching the WebDriver
 
