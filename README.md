@@ -40,7 +40,7 @@ The main reason for developing this plugin is to provide an easy way to generate
 	<dependencies>
         <dependency>
             <groupId>com.github.osandadeshan</groupId>
-            <artifactId>MaxSoft-Extent Reporter</artifactId>
+            <artifactId>maxsoft-extent-reporter</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
