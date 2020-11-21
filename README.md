@@ -25,11 +25,11 @@ The main reason for developing this plugin is to provide an easy way to generate
 - Java
 
 ## How to use
-**Pre-Requisites**
+**Pre-Requisites:**
 1. Java
 2. Maven
 
-**Steps**
+**Steps:**
 1. Add **MaxSoft Extent Reporter** dependency into "**pom.xml**"
 ```xml
     <repositories>
