@@ -12,7 +12,7 @@ import java.util.Properties;
  * Version         : 1.0.0
  * Date            : 11/21/2020
  * Time            : 11:31 AM
- * Description     : This is the property file reader class that is used to read the properties inside './src/test/resources/config.properties'
+ * Description     : This is the property file reader class that is used to read the properties inside './src/test/resources/extent.properties'
  **/
 
 public class PropertyFileReader {
